@@ -3,7 +3,7 @@
 
 Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Discover detailed information about various cat breeds, their characteristics, and much more. Whether you're a cat owner or just a fan, MeowsPedia is your go-to resource for all things feline.
 
-![MeowsPedia Banner](./assets/images/meows_pedia_banner.png.png)
+![MeowsPedia Banner](./assets/images/meows_pedia_banner.png)
 
 ## 🚀 Features
 
@@ -14,10 +14,10 @@ Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Disc
 
 ## 📸 Screenshots
 
-![Screenshot 1](./assets/images/screenshot4.jpg.png.png)
-![Screenshot 2](./assets/images/screenshot3.jpg.png.png)
-![Screenshot 3](./assets/images/screenshot1.jpg.png.png)
-![Screenshot 4](./assets/images/screenshot2.jpg.png.png)
+![Screenshot 1](./assets/images/screenshot4.jpg)
+![Screenshot 2](./assets/images/screenshot3.jpg)
+![Screenshot 3](./assets/images/screenshot1.jpg)
+![Screenshot 4](./assets/images/screenshot2.jpg)
 
 
 ## 💻 Getting Started
