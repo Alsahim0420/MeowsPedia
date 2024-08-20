@@ -1,9 +1,8 @@
-# 🐱 MeowsPedia - The place where
- you will find your ideal cat 🐾
+# 🐱 MeowsPedia - The place where you will find your ideal cat 🐾
 
 Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Discover detailed information about various cat breeds, their characteristics, and much more. Whether you're a cat owner or just a fan, MeowsPedia is your go-to resource for all things feline.
 
-![MeowsPedia Banner](./assets/images/meows_pedia_banner.png)
+![MeowsPedia Banner](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/meows_pedia_banner.png)
 
 ## 🚀 Features
 
@@ -14,10 +13,10 @@ Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Disc
 
 ## 📸 Screenshots
 
-![Screenshot 1](./assets/images/screenshot4.jpg)
-![Screenshot 2](./assets/images/screenshot3.jpg)
-![Screenshot 3](./assets/images/screenshot1.jpg)
-![Screenshot 4](./assets/images/screenshot2.jpg)
+![Screenshot 1](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/screenshot4.jpg)
+![Screenshot 2](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/screenshot3.jpg)
+![Screenshot 3](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/screenshot1.jpg)
+![Screenshot 4](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/screenshot2.jpg)
 
 
 ## 💻 Getting Started
@@ -31,7 +30,7 @@ Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Disc
 2. **Navigate to the Project Directory**:
 
     ```bash
-    cd meowspedia
+    cd MeowsPedia
     ```
 
 3. **Install Dependencies**:
