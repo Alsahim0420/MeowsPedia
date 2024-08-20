@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const SplashScreen(),
-          '/home': (context) => const CatListPage(),
+          '/home': (context) => const CatListScreen(),
           '/detail': (context) => const DetailCatScreen(),
         },
       ),

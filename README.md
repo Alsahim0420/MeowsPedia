@@ -1,27 +1,31 @@
-# 🐱 MeowsPedia - Your Ultimate Cat Breed Encyclopedia 🐾
+# 🐱 MeowsPedia - The place where
+ you will find your ideal cat 🐾
 
 Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Discover detailed information about various cat breeds, their characteristics, and much more. Whether you're a cat owner or just a fan, MeowsPedia is your go-to resource for all things feline.
 
-![MeowsPedia Banner](https://example.com/banner-image.png) <!-- Replace with your actual banner image URL -->
+![MeowsPedia Banner](./assets/images/meows_pedia_banner.png.png)
 
 ## 🚀 Features
 
-- **Extensive Breed Information**: Explore a comprehensive list of cat breeds with detailed descriptions including name, weight, temperament, origin, and more.
+- **Extensive Breed Information**: Explore a comprehensive list of cat breeds with detailed descriptions including name, temperament, origin, and more.
 - **Powerful Search**: Easily find any breed by name using our intuitive search feature.
 - **Filter Options**: Refine your search with custom filters to find exactly what you're looking for.
 - **User-Friendly Interface**: Navigate through our clean and responsive design with ease.
 
 ## 📸 Screenshots
 
-![Screenshot 1](https://example.com/screenshot1.png) <!-- Replace with your actual screenshot image URL -->
-![Screenshot 2](https://example.com/screenshot2.png) <!-- Replace with your actual screenshot image URL -->
+![Screenshot 1](./assets/images/screenshot4.jpg.png.png)
+![Screenshot 2](./assets/images/screenshot3.jpg.png.png)
+![Screenshot 3](./assets/images/screenshot1.jpg.png.png)
+![Screenshot 4](./assets/images/screenshot2.jpg.png.png)
+
 
 ## 💻 Getting Started
 
 1. **Clone the Repository**:
 
     ```bash
-    git clone https://github.com/your-username/meowspedia.git
+    git clone https://github.com/Alsahim0420/MewosPedia.git
     ```
 
 2. **Navigate to the Project Directory**:
@@ -55,15 +59,14 @@ We welcome contributions from everyone! Here’s how you can help:
 
 If you have any questions or feedback, feel free to reach out:
 
-- **Email**: pablo.melo0420@gmail.com
-- **Instagram**: [@yourhandle](https://twitter.com/yourhandle)
-- **LinkedIn**: [your-username](https://github.com/your-username)
+ **Email**: pablo.melo0420@gmail.com
+     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pablo-andr%C3%A9s-melo-carvajal-006308195/)
 
 ## 📥 Download APK
 
 You can download the APK of the application from the following link:
 
-[Download MeowsPedia APK](https://github.com/your-username/meowspedia/releases/download/v1.0.0/meowspedia.apk) <!-- Replace with your actual APK download link -->
+[Download MeowsPedia APK](https://github.com/Alsahim0420/MeowsPedia/releases/download/untagged-fd7d56fb37559ab43351/app-release.apk) 
 
 ## 🙌 License
 

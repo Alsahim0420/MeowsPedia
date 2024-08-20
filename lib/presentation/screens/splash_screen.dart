@@ -9,7 +9,8 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final catProvider = Provider.of<CatProvider>(context, listen: false);
-      catProvider.fetchCats().then((_) {
+      catProvider.fetchCats();
+      Future.delayed(const Duration(seconds: 2), () {
         Navigator.pushReplacementNamed(context, '/home');
       });
     });

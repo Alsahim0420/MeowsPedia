@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meows_pedia/presentation/presentation.dart';
 import 'package:provider/provider.dart';
 
-class CatListPage extends StatelessWidget {
-  const CatListPage({super.key});
+class CatListScreen extends StatelessWidget {
+  const CatListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,74 @@ class CatListPage extends StatelessWidget {
               Icons.search_outlined,
             ),
           ),
-          IconButton(
-            color: Theme.of(context).colorScheme.primary,
-            onPressed: () {},
-            icon: const Icon(
+          PopupMenuButton<SortOption>(
+            onSelected: (SortOption result) {
+              catProvider.updateSortOption(result);
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<SortOption>>[
+              PopupMenuItem<SortOption>(
+                value: SortOption.country,
+                child: Row(
+                  children: [
+                    if (catProvider.sortOption == SortOption.country)
+                      Icon(Icons.check,
+                          color: Theme.of(context).colorScheme.primary),
+                    const SizedBox(width: 8),
+                    const Text('Country'),
+                  ],
+                ),
+              ),
+              PopupMenuItem<SortOption>(
+                value: SortOption.affection,
+                child: Row(
+                  children: [
+                    if (catProvider.sortOption == SortOption.affection)
+                      Icon(Icons.check,
+                          color: Theme.of(context).colorScheme.primary),
+                    const SizedBox(width: 8),
+                    const Text('Affection'),
+                  ],
+                ),
+              ),
+              PopupMenuItem<SortOption>(
+                value: SortOption.energy,
+                child: Row(
+                  children: [
+                    if (catProvider.sortOption == SortOption.energy)
+                      Icon(Icons.check,
+                          color: Theme.of(context).colorScheme.primary),
+                    const SizedBox(width: 8),
+                    const Text('Energy'),
+                  ],
+                ),
+              ),
+              PopupMenuItem<SortOption>(
+                value: SortOption.intelligence,
+                child: Row(
+                  children: [
+                    if (catProvider.sortOption == SortOption.intelligence)
+                      Icon(Icons.check,
+                          color: Theme.of(context).colorScheme.primary),
+                    const SizedBox(width: 8),
+                    const Text('Intelligence'),
+                  ],
+                ),
+              ),
+            ],
+            icon: Icon(
               Icons.filter_list_outlined,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            color: Theme.of(context).colorScheme.background,
+          ),
+          Transform.rotate(
+            angle: !catProvider.isAscending ? 0 : 3.14,
+            child: IconButton(
+              color: Theme.of(context).colorScheme.primary,
+              onPressed: () {
+                catProvider.toggleSortOrder();
+              },
+              icon: const Icon(Icons.sort),
             ),
           ),
           Container(
@@ -51,7 +114,28 @@ class CatListPage extends StatelessWidget {
         children: [
           Expanded(
             child: catProvider.isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/image_logo.png'),
+                        const Text(
+                          'Loading the meows',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: LinearProgressIndicator(
+                            minHeight: 5,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        )
+                      ],
+                    ))
                 : RawScrollbar(
                     controller: scrollCtrl,
                     thumbVisibility: true,
