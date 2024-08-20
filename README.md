@@ -59,7 +59,8 @@ We welcome contributions from everyone! Here’s how you can help:
 If you have any questions or feedback, feel free to reach out:
 
  **Email**: pablo.melo0420@gmail.com
-     [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pablo-andr%C3%A9s-melo-carvajal-006308195/)
+     
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pablo-andr%C3%A9s-melo-carvajal-006308195/)
 
 ## 📥 Download APK
 
