@@ -27,14 +27,6 @@ class SplashScreen extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: LinearProgressIndicator(
-                minHeight: 20,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            )
           ],
         ),
       ),

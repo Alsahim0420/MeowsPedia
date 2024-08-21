@@ -146,7 +146,7 @@ class DetailCatScreen extends StatelessWidget {
                               value: cat.energyLevel ?? 2,
                             ),
                             AtributeWidget(
-                              icon: Icons.car_crash,
+                              icon: Icons.stars_rounded,
                               label: 'Intelligence',
                               value: cat.intelligence ?? 2,
                             ),
