@@ -66,7 +66,7 @@ If you have any questions or feedback, feel free to reach out:
 
 You can download the APK of the application from the following link:
 
-[Download MeowsPedia APK](https://github.com/Alsahim0420/MeowsPedia/releases/download/meowspedia/app-release.apk) 
+[Download MeowsPedia APK](https://drive.google.com/file/d/16i9tHdFyU3aGZ1SuEKtWx3NV2bxXnK6i/view?usp=sharing) 
 
 ## 🙌 License
 
