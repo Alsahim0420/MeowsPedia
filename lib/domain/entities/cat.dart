@@ -36,7 +36,7 @@ class Cat {
   final String? wikipediaUrl;
   final int? hypoallergenic;
   final String? referenceImageId;
-  CatImage? image; // Hacemos la imagen mutable
+  CatImage? image;
 
   Cat({
     required this.id,
@@ -79,7 +79,6 @@ class Cat {
     this.image,
   });
 
-  // Método para actualizar la imagen
   void setImage(CatImage newImage) {
     image = newImage;
   }

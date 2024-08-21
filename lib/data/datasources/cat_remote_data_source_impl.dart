@@ -1,5 +1,3 @@
-// lib/data/datasources/cat_remote_data_source_impl.dart
-
 import 'package:http/http.dart' as http;
 import 'package:meows_pedia/domain/datasources/cat_remote_data_source.dart';
 import 'dart:convert';
