@@ -68,6 +68,8 @@ You can download the APK of the application from the following link:
 
 [Download MeowsPedia APK](https://drive.google.com/file/d/16i9tHdFyU3aGZ1SuEKtWx3NV2bxXnK6i/view?usp=sharing) 
 
+Or in the releases 
+
 ## 🙌 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
