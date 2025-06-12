@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:meows_pedia/presentation/providers/cat_provider.dart';
@@ -7,12 +9,10 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final catProvider = Provider.of<CatProvider>(context, listen: false);
-      catProvider.fetchCats();
-      Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushReplacementNamed(context, '/home');
-      });
+      await catProvider.fetchCats(reset: true);
+      Navigator.pushReplacementNamed(context, '/home');
     });
 
     return Scaffold(

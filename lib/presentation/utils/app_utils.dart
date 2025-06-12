@@ -32,9 +32,10 @@ class AppUtils {
           "https://cdn.dribbble.com/users/2844289/screenshots/9975802/media/e665ebab6b700bc7d42637e0b2f95504.gif",
       fit: BoxFit.cover,
       placeholder: (context, url) => Center(
-        child: Image.asset(
-          "assets/gifts/loading_meows.gif",
-          fit: BoxFit.cover,
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: CircularProgressIndicator(strokeWidth: 2),
         ),
       ),
       errorWidget: (context, url, error) => Container(

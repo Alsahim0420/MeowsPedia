@@ -2,13 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:meows_pedia/presentation/presentation.dart';
 import 'package:provider/provider.dart';
 
-class CatListScreen extends StatelessWidget {
+class CatListScreen extends StatefulWidget {
   const CatListScreen({super.key});
+
+  @override
+  State<CatListScreen> createState() => _CatListScreenState();
+}
+
+class _CatListScreenState extends State<CatListScreen> {
+  late ScrollController scrollCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollCtrl = ScrollController();
+    scrollCtrl.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    final catProvider = Provider.of<CatProvider>(context, listen: false);
+    if (scrollCtrl.position.pixels >=
+            scrollCtrl.position.maxScrollExtent - 400 &&
+        !catProvider.isLoadingMore &&
+        catProvider.hasMore) {
+      catProvider.fetchMoreCats();
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final catProvider = Provider.of<CatProvider>(context);
-    final scrollCtrl = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -144,7 +173,8 @@ class CatListScreen extends StatelessWidget {
                     thumbColor: Theme.of(context).colorScheme.primary,
                     child: GridView.builder(
                       controller: scrollCtrl,
-                      itemCount: catProvider.cats.length,
+                      itemCount: catProvider.cats.length +
+                          (catProvider.isLoadingMore ? 1 : 0),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -153,13 +183,23 @@ class CatListScreen extends StatelessWidget {
                         childAspectRatio: 1,
                       ),
                       itemBuilder: (context, index) {
-                        final cat = catProvider.cats[index];
-                        return CatListItem(
-                            cat: cat,
-                            onTap: () {
-                              Navigator.pushNamed(context, '/detail',
-                                  arguments: cat);
-                            });
+                        if (index < catProvider.cats.length) {
+                          final cat = catProvider.cats[index];
+                          return CatListItem(
+                              cat: cat,
+                              onTap: () {
+                                Navigator.pushNamed(context, '/detail',
+                                    arguments: cat);
+                              });
+                        } else {
+                          // Loader al final
+                          return const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),

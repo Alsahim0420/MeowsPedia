@@ -10,19 +10,21 @@ class CatRepositoryImpl implements CatRepository {
   CatRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<Cat>> getCats() async {
+  Future<List<Cat>> getCats({int limit = 10, int page = 0}) async {
     try {
-      final List<CatModel> catModels = await remoteDataSource.fetchCats();
+      final List<CatModel> catModels =
+          await remoteDataSource.fetchCats(limit: limit, page: page);
 
       final List<Cat> cats =
           catModels.map((catModel) => catModel.toEntity()).toList();
 
       for (Cat cat in cats) {
-        if (cat.referenceImageId != null) {
+        if (cat.image == null && cat.referenceImageId != null) {
           final imageUrl =
               await remoteDataSource.fetchCatImage(cat.referenceImageId!);
-          cat.setImage(
-              CatImage(id: cat.referenceImageId!, url: imageUrl ?? ""));
+          if (imageUrl != null) {
+            cat.setImage(CatImage(id: cat.referenceImageId!, url: imageUrl));
+          }
         }
       }
 
