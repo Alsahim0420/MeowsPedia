@@ -53,7 +53,6 @@ jobs:
       id: create_release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ steps.get_version.outputs.version }}
         name: Release ${{ steps.get_version.outputs.version }}
         draft: false
         prerelease: false
@@ -64,6 +63,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
+        tag_name: ${{ steps.get_version.outputs.version }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
