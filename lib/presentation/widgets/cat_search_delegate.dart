@@ -11,6 +11,7 @@ class CatSearchDelegate extends SearchDelegate<Cat?> {
           searchFieldLabel: "Name of the cat",
           textInputAction: TextInputAction.search,
         );
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -18,6 +19,7 @@ class CatSearchDelegate extends SearchDelegate<Cat?> {
         icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
+          showResults(context);
         },
       ),
     ];
@@ -49,8 +51,9 @@ class CatSearchDelegate extends SearchDelegate<Cat?> {
         text: "You haven't done a search yet",
       );
     }
+
     final catProvider = Provider.of<CatProvider>(context);
-    final List<Cat> filteredCats = catProvider.cats
+    final filteredCats = catProvider.cats
         .where((cat) => cat.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
 

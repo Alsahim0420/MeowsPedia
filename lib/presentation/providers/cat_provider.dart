@@ -8,7 +8,8 @@ class CatProvider extends ChangeNotifier {
   final CatRepository repository;
 
   List<Cat> _cats = [];
-  List<Cat> get cats => _filteredCats;
+  List<Cat> get cats => _cats;
+  List<Cat> get filteredCats => _filteredCats;
 
   List<Cat> _filteredCats = [];
 
@@ -21,17 +22,80 @@ class CatProvider extends ChangeNotifier {
   SortOption _sortOption = SortOption.country;
   SortOption get sortOption => _sortOption;
 
+  int _currentPage = 0;
+  final int _limit = 10;
+  bool _isLoadingMore = false;
+  bool _hasMore = true;
+  bool get isLoadingMore => _isLoadingMore;
+  bool get hasMore => _hasMore;
+
+  final Map<String, String> _imageUrlCache = {};
+
   CatProvider({required this.repository});
 
-  Future<void> fetchCats() async {
+  Future<void> fetchCats({bool reset = false}) async {
+    if (reset) {
+      _currentPage = 0;
+      _cats = [];
+      _filteredCats = [];
+      _hasMore = true;
+      _imageUrlCache.clear();
+    }
     _isLoading = true;
     notifyListeners();
 
-    _cats = await repository.getCats();
+    final newCats = await repository.getCats(limit: _limit, page: _currentPage);
+    for (var cat in newCats) {
+      if (cat.image == null && cat.referenceImageId != null) {
+        if (_imageUrlCache.containsKey(cat.referenceImageId)) {
+          cat.setImage(CatImage(
+              id: cat.referenceImageId!,
+              url: _imageUrlCache[cat.referenceImageId!]!));
+        } else {
+          // La imagen se pedirá en el repo, pero si no está, la próxima vez la cacheamos aquí
+          // (esto es redundante, pero asegura que nunca se repita la petición)
+        }
+      } else if (cat.image != null && cat.referenceImageId != null) {
+        _imageUrlCache[cat.referenceImageId!] = cat.image!.url;
+      }
+    }
+    if (newCats.length < _limit) {
+      _hasMore = false;
+    }
+    _cats.addAll(newCats);
     _filteredCats = _cats;
     _applySorting();
 
     _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> fetchMoreCats() async {
+    if (_isLoadingMore || !_hasMore) return;
+    _isLoadingMore = true;
+    _currentPage++;
+    notifyListeners();
+
+    final newCats = await repository.getCats(limit: _limit, page: _currentPage);
+    for (var cat in newCats) {
+      if (cat.image == null && cat.referenceImageId != null) {
+        if (_imageUrlCache.containsKey(cat.referenceImageId)) {
+          cat.setImage(CatImage(
+              id: cat.referenceImageId!,
+              url: _imageUrlCache[cat.referenceImageId!]!));
+        }
+      } else if (cat.image != null && cat.referenceImageId != null) {
+        _imageUrlCache[cat.referenceImageId!] = cat.image!.url;
+      }
+    }
+    if (newCats.length < _limit) {
+      _hasMore = false;
+    }
+    _cats.addAll(newCats);
+    _filteredCats = _cats;
+    _applySorting();
+
+    _isLoadingMore = false;
     notifyListeners();
   }
 

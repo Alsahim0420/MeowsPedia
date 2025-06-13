@@ -1,5 +1,7 @@
 # 🐱 MeowsPedia - The place where you will find your ideal cat 🐾
 
+![coverage][coverage_badge]
+
 Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Discover detailed information about various cat breeds, their characteristics, and much more. Whether you're a cat owner or just a fan, MeowsPedia is your go-to resource for all things feline.
 
 ![MeowsPedia Banner](https://github.com/Alsahim0420/MeowsPedia/blob/main/assets/images/meows_pedia_banner.png)
@@ -10,6 +12,7 @@ Welcome to **MeowsPedia**, the ultimate app for cat lovers and enthusiasts! Disc
 - **Powerful Search**: Easily find any breed by name using our intuitive search feature.
 - **Filter Options**: Refine your search with custom filters to find exactly what you're looking for.
 - **User-Friendly Interface**: Navigate through our clean and responsive design with ease.
+
 
 ## 📸 Screenshots
 

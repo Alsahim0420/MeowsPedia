@@ -10,9 +10,9 @@ class CatRemoteDataSourceImpl implements CatRemoteDataSource {
   final String baseUrl = "https://api.thecatapi.com/v1";
 
   @override
-  Future<List<CatModel>> fetchCats() async {
+  Future<List<CatModel>> fetchCats({int limit = 10, int page = 0}) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/breeds?api_key=$apiKey'),
+      Uri.parse('$baseUrl/breeds?limit=$limit&page=$page&api_key=$apiKey'),
     );
 
     if (response.statusCode == 200) {
