@@ -15,58 +15,63 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
         java-version: '11'
-    
+
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.22.0'
         channel: 'stable'
-    
+
     - name: Install dependencies
       run: flutter pub get
-    
+
     - name: Verify formatting
       run: dart format --output=none --set-exit-if-changed .
-    
+
     - name: Analyze project source
       run: flutter analyze || true
-    
+
     - name: Run tests
       run: flutter test || true
-    
+
     - name: Build APK
       run: flutter build apk --release
-    
+
     - name: Get version from pubspec.yaml
       id: get_version
       run: |
-        VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
+        RAW=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+        VERSION=$(echo "$RAW" | cut -d'+' -f1)
+        BUILD=$(echo "$RAW" | cut -d'+' -f2)
+        TAG="v$VERSION+$BUILD-${{ github.run_number }}"
         echo "version=$VERSION" >> $GITHUB_OUTPUT
-    
+        echo "build=$BUILD" >> $GITHUB_OUTPUT
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+
     - name: Create GitHub Release
       id: create_release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ steps.get_version.outputs.version }}
-        name: Release ${{ steps.get_version.outputs.version }}
+        tag_name: ${{ steps.get_version.outputs.tag }}
+        name: Release ${{ steps.get_version.outputs.version }}+${{ steps.get_version.outputs.build }}
         draft: false
-        prerelease: false
+        prerelease: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
     - name: Upload APK to Release
       uses: softprops/action-gh-release@v2
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
-        tag_name: ${{ steps.get_version.outputs.version }}
+        tag_name: ${{ steps.get_version.outputs.tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 permissions:
-  contents: write 
+  contents: write
