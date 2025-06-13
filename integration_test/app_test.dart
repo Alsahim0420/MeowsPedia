@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:meows_pedia/main.dart' as app;
 import 'package:meows_pedia/presentation/presentation.dart';
-import 'package:provider/provider.dart';
 import '../test/mocks/mock_cat_repository.dart';
 
 void main() {

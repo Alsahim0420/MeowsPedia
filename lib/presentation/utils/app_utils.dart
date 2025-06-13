@@ -31,7 +31,7 @@ class AppUtils {
       imageUrl: image ??
           "https://cdn.dribbble.com/users/2844289/screenshots/9975802/media/e665ebab6b700bc7d42637e0b2f95504.gif",
       fit: BoxFit.cover,
-      placeholder: (context, url) => Center(
+      placeholder: (context, url) => const Center(
         child: SizedBox(
           width: 40,
           height: 40,
