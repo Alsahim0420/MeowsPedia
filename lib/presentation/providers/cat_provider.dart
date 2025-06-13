@@ -8,7 +8,8 @@ class CatProvider extends ChangeNotifier {
   final CatRepository repository;
 
   List<Cat> _cats = [];
-  List<Cat> get cats => _filteredCats;
+  List<Cat> get cats => _cats;
+  List<Cat> get filteredCats => _filteredCats;
 
   List<Cat> _filteredCats = [];
 

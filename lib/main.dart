@@ -5,21 +5,25 @@ import 'package:meows_pedia/data/repositories/cat_repository_impl.dart';
 import 'package:meows_pedia/data/datasources/cat_remote_data_source_impl.dart';
 import 'package:meows_pedia/domain/repositories/cat_repository.dart';
 
-void main() {
-  runApp(const MyApp());
+void main({CatRepository? repository}) {
+  runApp(MyApp(repository: repository));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final CatRepository? repository;
+
+  const MyApp({super.key, this.repository});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         Provider<CatRepository>(
-          create: (_) => CatRepositoryImpl(
-            remoteDataSource: CatRemoteDataSourceImpl(),
-          ),
+          create: (_) =>
+              repository ??
+              CatRepositoryImpl(
+                remoteDataSource: CatRemoteDataSourceImpl(),
+              ),
         ),
         ChangeNotifierProvider(
           create: (context) => CatProvider(
