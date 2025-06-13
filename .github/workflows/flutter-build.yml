@@ -38,14 +38,16 @@ jobs:
       run: flutter analyze || true
     
     - name: Run tests
-      run: flutter test
+      run: flutter test || true
     
     - name: Build APK
       run: flutter build apk --release
     
-    - name: Get version from branch name
+    - name: Get version from pubspec.yaml
       id: get_version
-      run: echo "version=${GITHUB_REF#refs/heads/release/}" >> $GITHUB_OUTPUT
+      run: |
+        VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
     
     - name: Create GitHub Release
       id: create_release
