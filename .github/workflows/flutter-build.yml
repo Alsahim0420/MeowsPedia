@@ -43,16 +43,27 @@ jobs:
     - name: Build APK
       run: flutter build apk --release
 
-    - name: Get version from pubspec.yaml
+    - name: Get version and unique tag
       id: get_version
       run: |
         RAW=$(grep '^version:' pubspec.yaml | awk '{print $2}')
         VERSION=$(echo "$RAW" | cut -d'+' -f1)
         BUILD=$(echo "$RAW" | cut -d'+' -f2)
-        TAG="v${VERSION}+${BUILD}-${GITHUB_RUN_NUMBER}"
+        BASE_TAG="v${VERSION}+${BUILD}"
+
+        echo "Buscando un tag disponible para ${BASE_TAG}..."
+
+        COUNT=1
+        while git ls-remote --tags origin | grep -q "${BASE_TAG}-${COUNT}"; do
+          COUNT=$((COUNT + 1))
+        done
+
+        FINAL_TAG="${BASE_TAG}-${COUNT}"
+        echo "Tag disponible encontrado: ${FINAL_TAG}"
+
         echo "version=$VERSION" >> $GITHUB_OUTPUT
         echo "build=$BUILD" >> $GITHUB_OUTPUT
-        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        echo "tag=$FINAL_TAG" >> $GITHUB_OUTPUT
 
     - name: Create GitHub Release
       id: create_release
