@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - 'release*'
-  pull_request:
-    branches:
-      - 'release*'
 
 jobs:
   build:
@@ -42,8 +39,24 @@ jobs:
     - name: Build APK
       run: flutter build apk --release
     
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
+    - name: Get version from branch name
+      id: get_version
+      run: echo "version=${GITHUB_REF#refs/heads/release/}" >> $GITHUB_OUTPUT
+    
+    - name: Create GitHub Release
+      id: create_release
+      uses: softprops/action-gh-release@v2
       with:
-        name: release-apk
-        path: build/app/outputs/flutter-apk/app-release.apk 
+        tag_name: ${{ steps.get_version.outputs.version }}
+        name: Release ${{ steps.get_version.outputs.version }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload APK to Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: build/app/outputs/flutter-apk/app-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
