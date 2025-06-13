@@ -54,7 +54,7 @@ jobs:
         echo "Buscando un tag disponible para ${BASE_TAG}..."
 
         COUNT=1
-        while git ls-remote --tags origin | grep -q "${BASE_TAG}-${COUNT}"; do
+        while curl --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${BASE_TAG}-${COUNT}" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" | grep -q '"ref"'; do
           COUNT=$((COUNT + 1))
         done
 
