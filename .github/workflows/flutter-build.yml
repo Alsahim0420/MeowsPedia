@@ -54,8 +54,11 @@ jobs:
         echo "Buscando un tag disponible para ${BASE_TAG}..."
 
         COUNT=1
-        while curl --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${BASE_TAG}-${COUNT}" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" | grep -q '"ref"'; do
-          COUNT=$((COUNT + 1))
+        while curl --silent \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${BASE_TAG}-${COUNT}" \
+          | grep -q '"ref"'; do
+            COUNT=$((COUNT + 1))
         done
 
         FINAL_TAG="${BASE_TAG}-${COUNT}"
@@ -81,6 +84,7 @@ jobs:
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
         tag_name: ${{ steps.get_version.outputs.tag }}
+        skip_if_release_exists: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
