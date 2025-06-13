@@ -79,14 +79,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload APK to Release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: build/app/outputs/flutter-apk/app-release.apk
-        tag_name: ${{ steps.get_version.outputs.tag }}
-        skip_if_release_exists: true
+    - name: Upload APK to GitHub Release
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: build/app/outputs/flutter-apk/app-release.apk
+        asset_name: app-release.apk
+        asset_content_type: application/vnd.android.package-archive
 
 permissions:
   contents: write
